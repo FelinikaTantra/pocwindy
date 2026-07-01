@@ -10,8 +10,8 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category_id', 'name', 'slug', 'sku', 'price', 
-        'strike_price', 'description', 'colors', 'sizes', 
+        'category_id', 'brand_id', 'name', 'slug', 'sku', 'price',
+        'strike_price', 'description', 'colors', 'sizes',
         'stock', 'badge', 'thumbnail'
     ];
 
@@ -23,6 +23,11 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
 
     public function images()

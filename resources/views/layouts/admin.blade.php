@@ -12,19 +12,103 @@
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
     <div class="flex flex-col md:flex-row min-h-screen">
         <!-- Sidebar -->
-        <div class="bg-gray-800 shadow-xl h-auto md:h-screen w-full md:w-64 fixed z-10 hidden md:block" id="sidebar">
-            <div class="p-6 text-white text-2xl font-bold border-b border-gray-700">
-                E-Catalog CMS
+        <div class="bg-gray-900 shadow-xl h-auto md:h-screen w-full md:w-64 fixed z-10 hidden md:flex flex-col" id="sidebar">
+            <div class="px-5 py-5 text-white text-xl font-bold border-b border-gray-700 flex items-center gap-2 flex-shrink-0">
+                <i class="fas fa-shoe-prints text-blue-400"></i>
+                <span>E-Catalog CMS</span>
             </div>
-            <ul class="list-reset flex flex-col md:flex-col py-4 px-2 text-center md:text-left">
-                <li class="mr-3 flex-1">
-                    <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg {{ request()->routeIs('admin.dashboard') ? 'bg-gray-700 text-white' : '' }}"><i class="fas fa-home w-5"></i> Dashboard</a>
-                    <a href="{{ route('admin.categories.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg {{ request()->routeIs('admin.categories.*') ? 'bg-gray-700 text-white' : '' }}"><i class="fas fa-folder w-5"></i> Kategori</a>
-                    <a href="{{ route('admin.products.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg {{ request()->routeIs('admin.products.*') ? 'bg-gray-700 text-white' : '' }}"><i class="fas fa-box w-5"></i> Produk</a>
-                    <a href="{{ route('admin.pages.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg {{ request()->routeIs('admin.pages.*') ? 'bg-gray-700 text-white' : '' }}"><i class="fas fa-file-alt w-5"></i> Pages</a>
-                    <a href="{{ route('admin.theme.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg {{ request()->routeIs('admin.theme.*') ? 'bg-gray-700 text-white' : '' }}"><i class="fas fa-paint-roller w-5"></i> Theme Customizer</a>
-                </li>
-            </ul>
+
+            <nav class="flex-1 overflow-y-auto py-3 px-2 space-y-1" style="scrollbar-width: thin; scrollbar-color: #4b5563 transparent;">
+
+                {{-- Dashboard --}}
+                <a href="{{ route('admin.dashboard') }}"
+                   class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('admin.dashboard') ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    <i class="fas fa-chart-line w-4 text-center"></i> Dashboard
+                </a>
+
+                {{-- CATALOG --}}
+                <div class="pt-3 pb-1">
+                    <p class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Catalog</p>
+                </div>
+                <a href="{{ route('admin.products.index') }}"
+                   class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition {{ request()->routeIs('admin.products.*') ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    <i class="fas fa-shoe-prints w-4 text-center"></i> Products
+                </a>
+                <a href="{{ route('admin.categories.index') }}"
+                   class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition {{ request()->routeIs('admin.categories.*') ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    <i class="fas fa-folder w-4 text-center"></i> Categories
+                </a>
+                <a href="{{ route('admin.sizes.index') }}"
+                   class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition {{ request()->routeIs('admin.sizes.*') ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    <i class="fas fa-ruler w-4 text-center"></i> Sizes
+                </a>
+                <a href="{{ route('admin.colors.index') }}"
+                   class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition {{ request()->routeIs('admin.colors.*') ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    <i class="fas fa-palette w-4 text-center"></i> Colors
+                </a>
+
+                {{-- CONTENT --}}
+                <div class="pt-3 pb-1">
+                    <p class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Content</p>
+                </div>
+                <a href="{{ route('admin.media.index') }}"
+                   class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition {{ request()->routeIs('admin.media.*') ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    <i class="fas fa-images w-4 text-center"></i> Media Library
+                </a>
+
+                {{-- APPEARANCE --}}
+                <div class="pt-3 pb-1">
+                    <p class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Appearance</p>
+                </div>
+                <a href="{{ route('admin.settings.home') }}"
+                   class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition {{ request()->routeIs('admin.settings.home') ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    <i class="fas fa-home w-4 text-center"></i> Homepage Settings
+                </a>
+                <a href="{{ route('admin.theme.index') }}"
+                   class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition {{ request()->routeIs('admin.theme.*') ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    <i class="fas fa-paint-roller w-4 text-center"></i> Theme Customizer
+                </a>
+
+                {{-- LEADS --}}
+                <div class="pt-3 pb-1">
+                    <p class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Leads</p>
+                </div>
+                <a href="{{ route('admin.leads.index') }}"
+                   class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition {{ request()->routeIs('admin.leads.*') ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    <i class="fas fa-user-plus w-4 text-center"></i> Leads
+                    @php $newLeadCount = \App\Models\Lead::where('status','new')->count(); @endphp
+                    @if($newLeadCount > 0)
+                        <span class="ml-auto bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5 leading-none">{{ $newLeadCount }}</span>
+                    @endif
+                </a>
+
+                {{-- ADMINISTRATION --}}
+                <div class="pt-3 pb-1">
+                    <p class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Administration</p>
+                </div>
+                <a href="{{ route('admin.users.index') }}"
+                   class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition {{ request()->routeIs('admin.users.*') ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    <i class="fas fa-users w-4 text-center"></i> Users
+                </a>
+
+                {{-- SETTINGS --}}
+                <div class="pt-3 pb-1">
+                    <p class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Settings</p>
+                </div>
+                <a href="{{ route('admin.settings.general') }}"
+                   class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition {{ request()->routeIs('admin.settings.general') ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    <i class="fas fa-cog w-4 text-center"></i> General Settings
+                </a>
+
+            </nav>
+
+            {{-- Bottom: catalog PDF --}}
+            <div class="border-t border-gray-700 px-3 py-3 flex-shrink-0">
+                <a href="{{ route('admin.catalog.pdf') }}" target="_blank"
+                   class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-400 hover:bg-gray-700 hover:text-white transition">
+                    <i class="fas fa-file-pdf w-4 text-center"></i> Export PDF Catalog
+                </a>
+            </div>
         </div>
         
         <!-- Main Content -->
