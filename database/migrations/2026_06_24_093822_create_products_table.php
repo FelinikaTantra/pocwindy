@@ -18,10 +18,10 @@ return new class extends Migration
                 $table->decimal('price', 12, 2);
                 $table->decimal('strike_price', 12, 2)->nullable();
                 $table->text('description');
-                $table->json('colors')->nullable(); // stored as JSON array
-                $table->json('sizes')->nullable();  // stored as JSON array
+                $table->json('colors')->nullable();
+                $table->json('sizes')->nullable();
                 $table->integer('stock')->default(0);
-                $table->string('badge')->nullable(); // Best Seller, New Arrival, Promo
+                $table->string('badge')->nullable();
                 $table->string('thumbnail')->nullable();
                 $table->timestamps();
             });
