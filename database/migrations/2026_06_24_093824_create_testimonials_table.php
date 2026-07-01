@@ -8,14 +8,16 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('testimonials', function (Blueprint $table) {
-            $table->id();
-            $table->string('customer_name');
-            $table->string('customer_photo')->nullable();
-            $table->text('content');
-            $table->integer('rating')->default(5);
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('testimonials')) {
+            Schema::create('testimonials', function (Blueprint $table) {
+                $table->id();
+                $table->string('customer_name');
+                $table->string('customer_photo')->nullable();
+                $table->text('content');
+                $table->integer('rating')->default(5);
+                $table->timestamps();
+            });
+        }
     }
 
     public function down(): void

@@ -8,12 +8,14 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('sizes', function (Blueprint $table) {
-            $table->id();
-            $table->string('name'); // e.g. 36, 37, 38, 39
-            $table->integer('sort_order')->default(0);
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('sizes')) {
+            Schema::create('sizes', function (Blueprint $table) {
+                $table->id();
+                $table->string('name'); // e.g. 36, 37, 38, 39
+                $table->integer('sort_order')->default(0);
+                $table->timestamps();
+            });
+        }
     }
 
     public function down(): void

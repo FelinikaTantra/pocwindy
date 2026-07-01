@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menu_items', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('menu_id')->constrained()->onDelete('cascade');
-            $table->string('title');
-            $table->string('url')->nullable();
-            $table->string('target')->default('_self');
-            $table->integer('order')->default(0);
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('menu_items')) {
+            Schema::create('menu_items', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('menu_id')->constrained()->onDelete('cascade');
+                $table->string('title');
+                $table->string('url')->nullable();
+                $table->string('target')->default('_self');
+                $table->integer('order')->default(0);
+                $table->timestamps();
+            });
+        }
     }
 
     /**

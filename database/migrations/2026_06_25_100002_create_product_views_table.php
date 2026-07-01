@@ -8,14 +8,16 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('product_views', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->string('session_id', 64)->nullable();
-            $table->string('ip_address', 45)->nullable();
-            $table->date('viewed_date');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('product_views')) {
+            Schema::create('product_views', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('product_id')->constrained()->onDelete('cascade');
+                $table->string('session_id', 64)->nullable();
+                $table->string('ip_address', 45)->nullable();
+                $table->date('viewed_date');
+                $table->timestamps();
+            });
+        }
     }
 
     public function down(): void
